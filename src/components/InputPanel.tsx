@@ -218,8 +218,8 @@ export default function InputPanel({ onGenerate, loading }: InputPanelProps) {
           <span
             id="hl-desc-count"
             className={cx(
-              'font-sans text-[12px] tabular-nums transition-colors',
-              nearLimit ? 'text-coral' : 'text-ink-faint',
+              'font-sans text-[12px] font-medium tabular-nums transition-colors',
+              nearLimit ? 'text-coral-ink' : 'text-ink-faint',
             )}
           >
             {count}/{MAX_CHARS}
@@ -247,8 +247,8 @@ export default function InputPanel({ onGenerate, loading }: InputPanelProps) {
       </div>
 
       {/* Example prompts --------------------------------------------------- */}
-      <div className="flex flex-col gap-2">
-        <span className={FIELD_LABEL}>Try an example</span>
+      <div role="group" aria-labelledby="hl-examples-label" className="flex flex-col gap-2">
+        <span id="hl-examples-label" className={FIELD_LABEL}>Try an example</span>
         <div className="flex flex-wrap gap-2">
           {EXAMPLES.map((ex) => (
             <ExampleButton key={ex.label} onClick={() => setDescription(ex.text)}>

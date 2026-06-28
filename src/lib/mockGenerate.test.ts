@@ -67,6 +67,28 @@ describe('mockGenerate', () => {
     expect(subheads.size).toBeGreaterThan(1)
   })
 
+  it('renders known acronyms in canonical casing (no awkward lowercase)', () => {
+    const spec = mockGenerate({
+      description: 'An AI note-taker for teams',
+      preset: 'bold',
+      tone: 'confident',
+    })
+    const text = [spec.eyebrow, spec.headline, spec.subhead].filter(Boolean).join(' ')
+    // The acronym is upcased wherever the subject appears…
+    expect(text).toContain('AI')
+    // …and never leaks the lowercase / naive-titlecase forms.
+    expect(text).not.toMatch(/\bAi\b/)
+    expect(text).not.toMatch(/\bai\b/)
+  })
+
+  it('canonicalizes an acronym category noun (CRM)', () => {
+    const spec = mockGenerate({ description: 'a CRM for small teams', preset: 'techy' })
+    const text = [spec.eyebrow, spec.headline, spec.subhead].filter(Boolean).join(' ')
+    expect(text).toContain('CRM')
+    expect(text).not.toMatch(/\bCrm\b/)
+    expect(text).not.toMatch(/\bcrm\b/)
+  })
+
   it('passes the accent through when provided', () => {
     const spec = mockGenerate({ description: 'a design tool', accent: '#FF6B5C' })
     expect(spec.accent).toBe('#FF6B5C')

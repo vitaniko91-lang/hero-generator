@@ -23,8 +23,34 @@ function pick<T>(arr: readonly T[], seed: number): T {
   return arr[seed % arr.length]
 }
 
+// Known acronyms / product nouns that have a canonical casing. Keyed by the
+// lowercased token so a description like "an AI note-taker" or "a SaaS CRM"
+// renders "AI"/"SaaS"/"CRM" instead of the awkward "Ai"/"Saas"/"Crm".
+const ACRONYMS: Record<string, string> = {
+  ai: 'AI',
+  api: 'API',
+  saas: 'SaaS',
+  crm: 'CRM',
+  ui: 'UI',
+  ux: 'UX',
+  b2b: 'B2B',
+  b2c: 'B2C',
+  ml: 'ML',
+  ar: 'AR',
+  vr: 'VR',
+  seo: 'SEO',
+  ios: 'iOS',
+}
+
+// Lowercase context (e.g. "the future of ai note-taker") — keep the word as the
+// user wrote it, but still upcase known acronyms so they never read as "ai".
+function canonicalCase(word: string): string {
+  return ACRONYMS[word] ?? word
+}
+
+// Title context (e.g. the subject Noun) — acronyms win, otherwise capitalize.
 function titleCase(word: string): string {
-  return word.charAt(0).toUpperCase() + word.slice(1)
+  return ACRONYMS[word] ?? word.charAt(0).toUpperCase() + word.slice(1)
 }
 
 // Words that don't make a good subject noun (articles, prepositions, pronouns,
@@ -80,7 +106,7 @@ function deriveSubject(description: string): Subject {
 
   return {
     Noun: phrase.map(titleCase).join(' '),
-    nounLower: phrase.join(' '),
+    nounLower: phrase.map(canonicalCase).join(' '),
   }
 }
 

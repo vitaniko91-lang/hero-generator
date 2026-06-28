@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useReducedMotion } from '../lib/useReducedMotion'
 
@@ -75,19 +75,19 @@ const SparkleBurst = forwardRef<SparkleBurstHandle, SparkleBurstProps>(
     const [bursts, setBursts] = useState<number[]>([])
     const prevTrigger = useRef(trigger)
 
-    const fire = () => {
+    const fire = useCallback(() => {
       if (reduced) return
       setBursts((b) => [...b, Date.now() + Math.random()])
-    }
+    }, [reduced])
 
-    useImperativeHandle(ref, () => ({ fire }))
+    useImperativeHandle(ref, () => ({ fire }), [fire])
 
     useEffect(() => {
       if (trigger !== prevTrigger.current) {
         prevTrigger.current = trigger
         fire()
       }
-    }, [trigger])
+    }, [trigger, fire])
 
     if (reduced) return null
 

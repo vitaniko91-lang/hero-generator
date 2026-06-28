@@ -9,9 +9,14 @@ export default {
     extend: {
       colors: {
         bg: { base: '#FAFAFC', panel: '#FFFFFF', sunk: '#F2F2F7' },
-        ink: { DEFAULT: '#18181B', soft: '#52525B', faint: '#A1A1AA' },
+        // ink.faint darkened from #A1A1AA (~2.5:1, fails AA) to #6B6B76 so meta
+        // text — counters, captions, the code-lang label, footer notes — clears
+        // 4.5:1 on base/panel/sunk. Still visibly lighter than ink.soft (#52525B).
+        ink: { DEFAULT: '#18181B', soft: '#52525B', faint: '#6B6B76' },
         indigo: { DEFAULT: '#5B4DF0', dim: '#EEEBFF' },
-        coral: '#FF6B5C',
+        // coral.DEFAULT (#FF6B5C ~2.8:1) stays for large/icon/decorative use;
+        // coral.ink (#C2402F ~5.2:1 on white) is the AA-safe shade for small text.
+        coral: { DEFAULT: '#FF6B5C', ink: '#C2402F' },
         sunshine: '#FFC44D',
         line: '#E8E8EF',
       },

@@ -231,9 +231,9 @@ function EmptyState() {
         <span className="absolute -right-1.5 -top-1.5 h-3 w-3 rounded-full bg-coral" aria-hidden="true" />
         <span className="absolute -bottom-1 -left-1.5 h-2 w-2 rounded-full bg-sunshine" aria-hidden="true" />
       </span>
-      <h3 className="font-display text-[20px] font-semibold text-ink">
+      <h2 className="font-display text-[20px] font-semibold text-ink">
         Your hero will appear here
-      </h3>
+      </h2>
       <p className="mt-2 max-w-[22rem] font-sans text-[14px] leading-relaxed text-ink-soft">
         Describe your product and hit{' '}
         <span className="font-medium text-ink">✨ Generate</span> — a polished hero
@@ -266,9 +266,9 @@ function ErrorState({
           aria-hidden="true"
         />
       </span>
-      <h3 className="font-display text-[20px] font-semibold text-ink">
+      <h2 className="font-display text-[20px] font-semibold text-ink">
         That didn’t generate
-      </h3>
+      </h2>
       <p className="mt-2 max-w-[24rem] font-sans text-[14px] leading-relaxed text-ink-soft">
         {message}
       </p>
