@@ -10,13 +10,21 @@ interface CodeBlockProps {
   code: string
   /** Shown as the small label in the header, e.g. "tsx". */
   language?: string
+  /** Cap the code viewport height (e.g. "440px"); long code scrolls within. */
+  maxHeight?: string
   className?: string
 }
 
 // A sunken code well with a Copy button. Copy state announces via an aria-live
 // region and fires a little sparkle burst (reduced motion: just the checkmark +
-// label, no burst). Long lines scroll horizontally.
-export default function CodeBlock({ code, language, className }: CodeBlockProps) {
+// label, no burst). Long lines scroll horizontally; with `maxHeight`, tall code
+// scrolls vertically within a fixed viewport (the header stays put).
+export default function CodeBlock({
+  code,
+  language,
+  maxHeight,
+  className,
+}: CodeBlockProps) {
   const reduced = useReducedMotion()
   const { copied, copy } = useCopyToClipboard()
   const [burst, setBurst] = useState(0)
@@ -66,7 +74,13 @@ export default function CodeBlock({ code, language, className }: CodeBlockProps)
         </div>
       </div>
 
-      <pre className="overflow-x-auto px-4 py-3.5 text-[13px] leading-relaxed">
+      <pre
+        className={cx(
+          'px-4 py-3.5 text-[13px] leading-relaxed',
+          maxHeight ? 'overflow-auto' : 'overflow-x-auto',
+        )}
+        style={maxHeight ? { maxHeight } : undefined}
+      >
         <code className="font-mono text-ink">{code}</code>
       </pre>
 
