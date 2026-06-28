@@ -1,32 +1,53 @@
-# React + TypeScript + Vite
+# Hero Lab
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+**A playful AI tool that turns a sentence into a landing-page hero — with copy-paste React + Tailwind code.**
 
-Currently, two official plugins are available:
+Describe your product, pick a vibe, and get a polished hero section (headline, subhead, CTAs, styled) you can preview live and copy as code. Built as a portfolio piece + a free tool.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🔗 **Live:** _(deploying to Vercel)_
+🎨 **Concept tool by [Vitalina Nikulina](#)** — a designer who ships production code.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What it does
 
-## Expanding the Oxlint configuration
+1. Describe your startup/product (or click an example).
+2. Pick a **style** (Minimal · Bold · Playful · Editorial · Techy · Elegant), **tone**, and an optional **accent color** — or let the AI pick.
+3. **Generate** → a live hero preview renders in a browser frame.
+4. **Copy** the faithful **React + Tailwind** (or **HTML**) code — self-contained, pastes anywhere.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+The six presets are curated mini design systems, so every generated hero looks good — the AI fills the copy and picks within a safe design system.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Art direction — "Playful Maker"
+
+Light, colorful, rounded, springy — deliberately distinct from the other portfolio cases. Cool off-white chrome + electric indigo, with coral/sunshine delight accents, so the colorful generated previews stay the star. Type: Space Grotesk + Plus Jakarta Sans + JetBrains Mono.
+
+## How generation works
+
+- The frontend calls a **Vercel serverless function** (`api/generate.ts`) that proxies **Claude Haiku** and returns structured JSON (`HeroSpec`), which the app renders into a preview + code.
+- The API key lives only in a Vercel env var (`ANTHROPIC_API_KEY`) — never in the browser.
+- Guards: Haiku (cheap) + `max_tokens` cap + per-IP rate limit + input length cap.
+- **No key set?** The function returns a deterministic, tasteful **mock** (and the UI shows a "Demo output" badge) — so the tool works for previews and local dev without a key.
+
+## Tech
+
+React + TypeScript · Vite · Tailwind CSS · `motion` (springy animation) · Claude Haiku via a Vercel serverless function. Accessible (WCAG AA, full keyboard, reduced-motion) and responsive.
+
+## Run locally
+
+```bash
+npm install
+npm run dev      # UI works with the deterministic mock (no key needed)
+npm run test     # vitest
+npm run build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+To run real AI locally, use `vercel dev` with `ANTHROPIC_API_KEY` set (the static dev server falls back to the mock).
+
+## Deploy (Vercel)
+
+Import the repo on vercel.com (auto-detects Vite), add an `ANTHROPIC_API_KEY` env var, deploy. The `api/` function ships automatically.
+
+---
+
+_Hero Lab is a free concept tool — designed & built by Vitalina Nikulina._
