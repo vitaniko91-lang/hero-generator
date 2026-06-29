@@ -1,3 +1,4 @@
+/// <reference types="node" />
 // Vercel serverless function (Node runtime) for Hero Lab generation.
 //
 // SELF-CONTAINED ON PURPOSE: this file has NO relative imports into ../src/*.
