@@ -100,7 +100,7 @@ export default function TopBar() {
           </div>
 
           <a
-            href="#"
+            href="https://github.com/vitaniko91-lang/hero-generator"
             aria-label="View source on GitHub"
             className={cx(
               'grid h-9 w-9 place-items-center rounded-lg text-ink-soft transition-colors',
@@ -112,7 +112,7 @@ export default function TopBar() {
           </a>
 
           <a
-            href="#"
+            href="https://vitaniko91-lang.github.io/"
             className={cx(
               'group inline-flex items-center gap-1.5 rounded-full border border-indigo/20 bg-indigo-dim',
               'px-3 py-1.5 font-sans text-[13px] font-medium text-indigo transition-colors',

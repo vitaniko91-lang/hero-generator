@@ -5,7 +5,7 @@
 Describe your product, pick a vibe, and get a polished hero section (headline, subhead, CTAs, styled) you can preview live and copy as code. Built as a portfolio piece + a free tool.
 
 🔗 **Live:** _(deploying to Vercel)_
-🎨 **Concept tool by [Vitalina Nikulina](#)** — a designer who ships production code.
+🎨 **Concept tool by [Vitalina Nikulina](https://vitaniko91-lang.github.io/)** — a designer who ships production code.
 
 ---
 

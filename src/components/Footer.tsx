@@ -29,7 +29,7 @@ export default function Footer() {
             </p>
           </div>
           <a
-            href="#"
+            href="https://vitaniko91-lang.github.io/"
             className={cx(
               'inline-flex shrink-0 items-center gap-2 rounded-full bg-indigo px-5 py-3',
               'font-display text-[15px] font-medium text-white shadow-soft transition-colors',
@@ -51,10 +51,10 @@ export default function Footer() {
             </span>
           </div>
           <div className="flex items-center gap-1">
-            <a href="#" aria-label="GitHub" className={ICON_LINK}>
+            <a href="https://github.com/vitaniko91-lang/hero-generator" aria-label="GitHub" className={ICON_LINK}>
               <Icon icon="lucide:github" className="h-[18px] w-[18px]" aria-hidden="true" />
             </a>
-            <a href="#" aria-label="X (formerly Twitter)" className={ICON_LINK}>
+            <a href="https://x.com/VitalinaN96916" aria-label="X (formerly Twitter)" className={ICON_LINK}>
               <Icon icon="simple-icons:x" className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
